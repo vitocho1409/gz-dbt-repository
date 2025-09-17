@@ -10,8 +10,11 @@ sources:
         columns:
           - name: products_id
             description: primary key
+            tests:
+              - unique
+              - not_null  
           - name: purchase_price
-            description: Precio de compra del producto, casteado a un tipo de dato numérico (FLOAT)
+            description: Precio de compra del producto, casteado a un tipo de dato numérico (FLOAT)                  
       - name: sales
         identifier: raw_gz_sales
         description: Este modelo limpia y renombra las columnas de la tabla de ventas sin procesar de Greenweez
@@ -25,13 +28,17 @@ sources:
           - name: revenue
             description: El importe pagado por el cliente para comprar el producto
           - name: quantity
-            description: La cantidad de productos comprados para un pedido dado                     
+            description: La cantidad de productos comprados para un pedido dado
+              
       - name: ship
         identifier: raw_gz_ship
         description: Este modelo renombra y cambia el tipo de dato de las columnas de la tabla de envíos sin procesar, preparándola para su análisis
         columns:
           - name: orders_id
             description: El identificador único de cada pedido
+            tests:
+              - unique
+              - not_null 
           - name: shipping_fee
             description: El costo de envío cobrado al cliente
           - name: log_cost
